@@ -17,4 +17,11 @@ public class BeerServiceImpl implements BeerService {
     public Beer createBeer(Beer beer) {
         return Beer.builder().id(UUID.randomUUID()).build();
     }
+
+    @Override
+    public void updateBeer(UUID beerId, Beer beer) {
+        // Code to update the beer.
+    }
+
+
 }
