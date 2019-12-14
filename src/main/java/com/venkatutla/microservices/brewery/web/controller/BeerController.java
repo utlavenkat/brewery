@@ -2,18 +2,18 @@ package com.venkatutla.microservices.brewery.web.controller;
 
 import com.venkatutla.microservices.brewery.services.BeerService;
 import com.venkatutla.microservices.brewery.web.dto.Beer;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/beer")
+@RequestMapping(path = "/api/v1/beer")
 public class BeerController {
+
+    private static final String SERVICE_URL = "/api/v1/beer";
 
     private BeerService beerService;
 
@@ -24,5 +24,13 @@ public class BeerController {
     @GetMapping("/{beerId}")
     public ResponseEntity<Beer> getBeer(@PathVariable("beerId") UUID beerId) {
         return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity createBeer(@RequestBody Beer beer) {
+        Beer newBeer = beerService.createBeer(beer);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location",SERVICE_URL + "/"+newBeer.getId());
+        return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 }
