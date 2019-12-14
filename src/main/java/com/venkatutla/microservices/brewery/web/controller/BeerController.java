@@ -1,5 +1,6 @@
 package com.venkatutla.microservices.brewery.web.controller;
 
+import com.venkatutla.microservices.brewery.services.BeerService;
 import com.venkatutla.microservices.brewery.web.dto.Beer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +15,14 @@ import java.util.UUID;
 @RequestMapping("/api/v1/beer")
 public class BeerController {
 
+    private BeerService beerService;
+
+    public BeerController(BeerService beerService) {
+        this.beerService = beerService;
+    }
+
     @GetMapping("/{beerId}")
     public ResponseEntity<Beer> getBeer(@PathVariable("beerId") UUID beerId) {
-        return new ResponseEntity<>(Beer.builder().id(beerId).beerName("Kingfisher").beerType("KingfisherType").build(), HttpStatus.OK);
+        return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
     }
 }
