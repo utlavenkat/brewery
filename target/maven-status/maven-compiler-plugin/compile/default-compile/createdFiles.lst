@@ -1,0 +1,6 @@
+com/venkatutla/microservices/brewery/web/dto/Beer.class
+com/venkatutla/microservices/brewery/services/BeerService.class
+com/venkatutla/microservices/brewery/BreweryApplication.class
+com/venkatutla/microservices/brewery/web/dto/Beer$BeerBuilder.class
+com/venkatutla/microservices/brewery/services/BeerServiceImpl.class
+com/venkatutla/microservices/brewery/web/controller/BeerController.class

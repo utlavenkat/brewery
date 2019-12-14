@@ -1,0 +1,29 @@
+#Installing Docker on CentOs
+1. first, let’s update the package database:
+    sudo yum check-update
+2. Now run this command. It will add the official Docker repository, download the latest version of Docker, and install it:
+    curl -fsSL https://get.docker.com/ | sh
+3. After installation has completed, start the Docker daemon:
+    sudo systemctl start docker
+4. Verify that it’s running:
+    sudo systemctl status docker
+
+#Initializing Docker Swarm
+1. docker swarm init
+
+## Create portainer service in docker swarm on port 80
+docker service create \
+--name portainer \
+--publish 80:9000 \
+--constraint 'node.role == manager' \
+--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+portainer/portainer \
+-H unix:///var/run/docker.sock
+
+
+
+# With Overlay Network
+docker network create --driver overlay spring-cloud-micro
+
+#Running brewery service in docker
+docker service create --name breweryservice -p 8081:8081 utlavenkat/brewery
