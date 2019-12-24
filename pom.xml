@@ -52,7 +52,13 @@
             </exclusions>
         </dependency>
     </dependencies>
-
+   <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub avides Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/utlavenkat/brewery</url>
+    </repository>
+  </distributionManagement>
     <build>
         <plugins>
             <plugin>
