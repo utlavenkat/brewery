@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.venkatutla.microservices</groupId>
     <artifactId>brewery</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>brewery</name>
     <description>Brewery project for Microservices Demo</description>
 
